@@ -8,7 +8,7 @@ class Product(BaseModel):
     desc: str
     price: str
     maker: str
-    regdate : str
+    regdate: str
 
 @router.post('/product')
 async def new_product(product: Product):

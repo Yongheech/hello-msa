@@ -3,7 +3,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from routes import product
-
 app = FastAPI()
 
 # CORS 설정
@@ -18,9 +17,8 @@ app.add_middleware(
     allow_methods=['*'],
     allow_headers=['*']
 )
+
 app.include_router(product.router)
-
-
 
 if __name__ == '__main__':
     uvicorn.run('main:app', port=8050, reload=True)
