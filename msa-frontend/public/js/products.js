@@ -33,7 +33,7 @@ const displayProductList = (products) => {
     let html = '<ul>';
     for (const p of products){
         html += `<li>
-            상품번호 : ${p.pno}
+            상품번호 : <a href="/product/${p.pno}">${p.pno}</a>,
             상품이름 : ${p.name},
             상품가격 : ${p.price} ,
             상품등록일 : ${p.regdate} 
