@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from sqlalchemy import Integer, Column, String
 from sqlalchemy.ext.declarative import declarative_base
 
