@@ -31,6 +31,15 @@ router.get('/loginuser', function(req, res, next) {
   res.sendFile(__dirname + '/views/userlogin.html')
 });
 
+/* secure page access  */
+router.get('/secure', function(req, res, next) {
+  res.sendFile(__dirname + '/views/secure.html')
+});
+
+/* logout - session remove  */
+router.get('/logout', function(req, res, next) {
+});
+
 /* product registration */
 router.get('/product', function(req, res, next) {
   res.sendFile(__dirname + '/views/product.html')
