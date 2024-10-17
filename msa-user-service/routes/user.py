@@ -1,10 +1,12 @@
 from collections import UserList
+from typing import Optional
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 
-from schema.user import UserBase, User, UserList
+from schema.user import UserBase, User, UserList, Token, UserLogin
+from service.auth import userlogin
 from service.database import get_db
 from service.user import register, userlist, userone
 
@@ -25,8 +27,24 @@ async def list_users(db:Session=Depends(get_db)):
     #return [UserList.from_orm(u) for u in users]
     return [UserList.model_validate(u) for u in users]
 
-@router.get('/user/{mno}', response_model=User)
+@router.get('/user/{mno}', response_model=Optional[User])
 async def user_one(mno:int, db:Session=Depends(get_db)):
     user = userone(db, mno)
 
+    if not user:
+        raise HTTPException(404, 'User not found')
+
     return User.model_validate(user)
+
+@router.post('/userlogin', response_model=Optional[Token])
+async def user_login(login:UserLogin, db:Session=Depends(get_db)):
+    token = userlogin(login, db)
+    print(token)
+
+    if token is None:
+        raise HTTPException (401,
+                             '로그인 실패! - 아이디나 비밀번호가 틀려요!')
+
+    return token
+
+
