@@ -39,7 +39,7 @@ async def user_one(mno:int, db:Session=Depends(get_db)):
 @router.post('/userlogin', response_model=Optional[Token])
 async def user_login(login:UserLogin, db:Session=Depends(get_db)):
     token = userlogin(login, db)
-    print(token)
+    # print(token)
 
     if token is None:
         raise HTTPException (401,
