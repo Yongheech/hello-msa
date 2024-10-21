@@ -27,3 +27,15 @@ def userlist(db: Session):
 # 회원 상세 조회
 def userone(db: Session, mno: int):
     return db.query(User).filter(User.mno == mno).first()
+
+# 회원 삭제
+def userdelete(db: Session, mno: int):
+    user = db.query(User).filter(User.mno == mno).first()
+
+    if user:
+        db.delete(user)
+        db.commit()
+    else:
+        return None
+
+    return 1

@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from schema.user import UserBase, User, UserList, Token, UserLogin
 from service.auth import userlogin
 from service.database import get_db
-from service.user import register, userlist, userone
+from service.user import register, userlist, userone, userdelete
 
 router = APIRouter()
 
@@ -48,3 +48,8 @@ async def user_login(login:UserLogin, db:Session=Depends(get_db)):
     return token
 
 
+@router.delete('/user/{mno}', response_model=int)
+async def user_delete(mno:int, db:Session=Depends(get_db)):
+    result = userdelete(db, mno)
+
+    return result
