@@ -32,9 +32,26 @@ const displayUserList = (users) => {
             회원아이디 : <a href="/user/${user.mno}">${user.userid}</a>,
             회원이름 : ${user.name} ,
             회원가입일 : ${user.regdate} 
+            [<a href="javascript:umodify(${user.mno})">수정</a>]
+            [<a href="javascript:uremove(${user.mno})">삭제</a>]
         </li>`;
     }
     html += '</ul>';
 
     userlist.innerHTML = html;
 };
+
+const umodify= (mno) => {
+    alert('수정되었습니다')
+}
+
+
+const uremove= async (mno) => {
+    if (!confirm('정말로 삭제하시겠습니까?')) return;
+    let url = `http://127.0.0.1:8000/user/${mno}`;
+    const res = await fetch(url, {method:'delete'});
+    if (res.ok){
+        console.log(res)
+        location.href='/users';
+    }
+}
