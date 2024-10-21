@@ -47,8 +47,9 @@ const displayProductList = (products) => {
 };
 
 const pmodify= (pno) => {
-    alert('수정되었습니다')
-}
+    let url = `http://127.0.0.1:3000/product_put/${pno}`;
+    location.href=url;
+};
 const premove= async (pno) => {
     if (!confirm('정말로 삭제하시겠습니까?')) return;
     let url = `http://127.0.0.1:8050/product/${pno}`;
