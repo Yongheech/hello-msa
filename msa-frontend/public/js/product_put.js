@@ -51,7 +51,7 @@ modfiybtn.addEventListener('click', () => {
     });
     console.log(jsondata);
 
-    const res = fetch(`http://127.0.0.1:8050/product`,
+    const res = fetch(`http://${sessionStorage.getItem('productsrvURL')}:8050/product`,
     {
         method: 'PUT',
         headers: {

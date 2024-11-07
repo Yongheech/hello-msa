@@ -2,7 +2,6 @@ var express = require('express');
 // axios : 프라미스 기반 http 클라이언트 라이브러리
 // 주로 웹앱에서 api 호출 또는 http 요청을 보내는데 사용
 var axios = require('axios');
-
 var router = express.Router();
 
 var client_id = '';
@@ -45,7 +44,7 @@ router.get('/api/callback', function(req, res, next) {
 
 // -------
 
-/* custom naver api login2 */
+/* custom naver api login */
 router.get('/api/naver2', function(req, res, next) {
     api_url = 'https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' + client_id + '&redirect_uri=' + redirectURI2 + '&state=' + state;
     res.writeHead(200, {'Content-Type': 'text/html;charset=utf-8'});
@@ -90,8 +89,8 @@ router.get('/secure2', function(req, res, next) {
 
 /* logout  */
 router.get('/logout', function(req, res, next) {
-    if ( req.session.token)
-         req.session.destroy(); // 서버측 세션 제거
+    if (req.session.token)
+        req.session.destroy(); // 서버측 세션 제거
     res.redirect('/');
 });
 
