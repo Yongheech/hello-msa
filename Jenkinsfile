@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh '''
                 rm -rf hello-msa
-                git clone https://github.com/chkion1234/hello-msa.git
+                git clone https://github.com/Yongheech/hello-msa.git
                 '''
             }
         }
