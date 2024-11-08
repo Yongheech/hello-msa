@@ -6,7 +6,7 @@ var session = require('express-session')
 // 환경변수 설정을 위해 템플릿 엔진 지정
 const handlebars = require('express-handlebars')
 
-let port = 3000
+let port = 3000;
 
 let indexRouter = require('./public/index');
 let naverRouter = require('./public/naver');
@@ -14,13 +14,13 @@ let naverRouter = require('./public/naver');
 let app = express();
 
 // handlebars 설정
-const hns = handlebars.create({})
-app.engine('handlebars', hns.engine)
+const hbs = handlebars.create({});
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, 'public/handlebars'));
 
 // session 설정
-// resave, saveUninitialized - 로그인하지 않은 클라이언트 세션은 저장 x
+// resave, saveUninitialized - 로그인하지 않은 클라이언트의 세션은 저장 x
 app.use(session({
   secret: 'Hello, World!!', // 세션 데이터 암호화시 사용하는 비밀키
   resave: false, // 세션 데이터 수정시 재저장 여부
@@ -39,9 +39,8 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-
 // 서버 시작
-app.listen(port, ()=> {
+app.listen(port, () => {
   console.log(`frontend server on port ${port}`)
 })
 

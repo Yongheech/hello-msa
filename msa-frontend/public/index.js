@@ -5,7 +5,7 @@ var router = express.Router();
 const usersrvURL = process.env.USER_SRV_URL || '127.0.0.1';
 const productsrvURL = process.env.PRODUCT_SRV_URL || '127.0.0.1';
 
-/* 404 not found. */
+/* 404 not found */
 router.get('/notfound', function(req, res, next) {
   res.sendFile(__dirname + '/views/notfound.html')
 });
@@ -13,7 +13,8 @@ router.get('/notfound', function(req, res, next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   //res.sendFile(__dirname + '/views/index.html')
-  res.render('index', {usersrvURL: usersrvURL,  productsrvURL: productsrvURL, layout: false});
+  res.render('index', { layout: false,
+    usersrvURL: usersrvURL, productsrvURL: productsrvURL });
 });
 
 /* user registration */
@@ -21,7 +22,7 @@ router.get('/user', function(req, res, next) {
   res.sendFile(__dirname + '/views/user.html')
 });
 
-/* users list */
+/* user list */
 router.get('/users', function(req, res, next) {
   res.sendFile(__dirname + '/views/users.html')
 });
@@ -36,21 +37,23 @@ router.get('/loginuser', function(req, res, next) {
   res.sendFile(__dirname + '/views/userlogin.html')
 });
 
-/* secure page access  */
+/* secure page access */
 router.get('/secure', function(req, res, next) {
   res.sendFile(__dirname + '/views/secure.html')
 });
 
-/* logout - session remove  */
-router.get('/logout', function(req, res, next) {
-});
+/* logout - session remove */
+// router.get('/logout', function(req, res, next) {
+//  sessionStorage.removeItem('token');
+//  location.href = '/';
+// });
 
 /* product registration */
 router.get('/product', function(req, res, next) {
   res.sendFile(__dirname + '/views/product.html')
 });
 
-/* products list */
+/* product list */
 router.get('/products', function(req, res, next) {
   res.sendFile(__dirname + '/views/products.html')
 });
@@ -65,17 +68,18 @@ router.get('/product_put/:pno', function(req, res, next) {
   res.sendFile(__dirname + '/views/product_put.html')
 });
 
-//---
+// ---
 
 /* naver api login */
 router.get('/login/naver', function(req, res, next) {
-  res.sendFile(__dirname + '/views/naverlogin.html');
+  res.sendFile(__dirname + '/views/naverlogin.html')
 });
 
 /* naver api callback */
 router.get('/callback/naver', function(req, res, next) {
-  res.sendFile(__dirname + '/views/callbacknaver.html');
+  res.sendFile(__dirname + '/views/callbacknaver.html')
 });
+
 
 
 module.exports = router;
