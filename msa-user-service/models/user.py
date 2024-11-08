@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Integer, Column, String
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -14,4 +14,5 @@ class User(Base):
     passwd = Column(String(128), nullable=False)
     name = Column(String(15), nullable=False)
     email = Column(String(50), nullable=False)
-    regdate = Column(String(20), default=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+    regdate = Column(String(20), default=datetime.now() \
+                     .strftime('%Y-%m-%d %H:%M:%S'))

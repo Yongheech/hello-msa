@@ -1,10 +1,11 @@
 from sqlalchemy.orm import Session
-from schema.user import UserBase
+
 from models.user import User
+from schema.user import UserBase
 from service.auth import hashed_password
 
 
-# 회원 가입 처리
+# 회원가입 처리
 # 기본 회원정보 + 번호,가입일
 def register(db: Session, user: UserBase):
     # 비밀번호 암호화
@@ -26,16 +27,6 @@ def userlist(db: Session):
 
 # 회원 상세 조회
 def userone(db: Session, mno: int):
-    return db.query(User).filter(User.mno == mno).first()
+    return db.query(User) \
+        .filter(User.mno == mno).first()
 
-# 회원 삭제
-def userdelete(db: Session, mno: int):
-    user = db.query(User).filter(User.mno == mno).first()
-
-    if user:
-        db.delete(user)
-        db.commit()
-    else:
-        return None
-
-    return 1

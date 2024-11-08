@@ -8,9 +8,9 @@ class ProductBase(BaseModel):
     maker: str
     regdate: str
 
+
 class Product(ProductBase):
     pno: int
-
 
     class Config:
         from_attributes=True
@@ -21,7 +21,6 @@ class ProductList(BaseModel):
     name: str
     price: int
     regdate: str
-
 
     class Config:
         from_attributes=True

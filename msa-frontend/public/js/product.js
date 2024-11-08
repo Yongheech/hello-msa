@@ -1,12 +1,13 @@
 // 상품등록 버튼 이벤트 처리
 const regbtn = document.querySelector('#regbtn');
-const productfrm = document.productfrm
+const productfrm = document.productfrm;
 
-regbtn.addEventListener('click', async ()=> {
+// 비동기 처리 구현 - async, await
+regbtn.addEventListener('click', async () => {
     const formData = new FormData(productfrm);
 
     let jsondata = {};
-    formData.forEach((val, key)=> {
+    formData.forEach((val, key) => {
         jsondata[key] = val;
     });
     console.log(jsondata);
@@ -16,13 +17,12 @@ regbtn.addEventListener('click', async ()=> {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type':'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(jsondata)
         })
-
-        .then((resp) => resp.json())// 서버로의 응답 처리
-        .then((data) =>  {
+        .then((resp) => resp.json()) // 서버로의 응답 처리
+        .then((data) => {
             alert('상품 등록 성공!!');
             console.log(data.pno, data.name, data.regdate);
         }).catch((error) => {
@@ -31,3 +31,5 @@ regbtn.addEventListener('click', async ()=> {
         });
 
 });
+
+
